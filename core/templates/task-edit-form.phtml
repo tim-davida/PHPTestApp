@@ -1,0 +1,53 @@
+﻿<h2><?php echo $editMode ? "Редактирование задачи" : "Добавление новой задачи"; ?></h2>
+<hr>
+
+<!-- Уведомление об ошибке -->
+<?php if (isset($userMessage) && ($userMessage != null)): ?>
+	<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+		<?php echo $userMessage; ?> 
+	</div>
+<?php endif; ?>
+		
+<!-- Форма добавления/редактирования записи -->
+<form action="./edit-task?action=<?php echo $editMode ? "update" : "add" ?>" method="POST">
+	<input name="task_id" type="hidden" <?php if (isset($taskId)) echo "value=\"".$taskId."\""; ?> >
+	<div class="form-group">
+		<label for="user">Ваше имя:</label>
+		<input id="user" name="user" type="text" class="form-control" required placeholder="Укажите ваше имя" <?php if (isset($taskUsername)) echo "value=\"".$taskUsername."\""; ?> >
+	</div>
+	<div class="form-group">
+		<label for="email">Адрес E-Mail:</label>
+		<input id="email" name="email" type="email" class="form-control" required placeholder="Укажите вашу почту" <?php if (isset($taskEmail)) echo "value=\"".$taskEmail."\""; ?>>
+	</div>
+	<div class="form-group">
+		<label for="content">Задача:</label>
+		<textarea id="content" name="content" class="form-control" required placeholder="Укажите задачу"><?php if (isset($taskContent)) echo $taskContent; ?></textarea>
+	</div>
+	<?php if ($editMode): ?>
+		<div class="form-group">
+			<label for="state">Статус:</label>
+			<select id="state" name="state" class="form-control">
+				<option <?php if ($taskState) echo "selected"; ?> value="true">Выполнено</option>
+				<option <?php if (!$taskState) echo "selected"; ?> value="false">Не выполнено</option>
+			</select>
+		</div>
+	<?php endif; ?>
+	<hr>
+
+	<!-- Кнопка удаления задачи -->
+	<?php if ($editMode): ?>
+		<div class="pull-right">
+			<a href="./edit-task?action=delete&task_id=<?php echo $taskId; ?>" class="btn btn-danger">Удалить задачу</a>
+		</div>
+	<?php endif; ?>
+
+	<!-- Кнопки добавления и отмены -->
+	<div class="pull-left">
+		<button type="submit" class="btn btn-primary"><?php echo $editMode ? "Сохранить" : "Добавить"; ?></button>
+		<a href="./" class="btn btn-warning" onclick="(function() { if (history.length > 1) history.back(); return false;} )();">Отмена</a>
+	</div>
+
+	<!-- Очистка 'float' -->
+	<div class="clearfix"></div>
+</form>

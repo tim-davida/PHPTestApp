@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Заголовок и описание страницы -->
+		<title>Добавление новой задачи</title>
+		<meta name="description" content="Bla-bla-bla.." />
+		
+		<!-- Иконка -->
+		<link href="./assets/img/favicon.png" rel="icon" type="image/png" />
+		
+		<!-- Файлы Bootstrap -->
+		<link href="./assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+	
+		<!-- Окно с формой добавления записи -->
+		<div id="AddTaskModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Добавление новой задачи</h4>
+					</div>
+					<div class="modal-body">
+						<form action="/action_page.php">
+							<div class="form-group">
+								<label for="name">Ваше имя:</label>
+								<input id="name" name="name" type="text" class="form-control" required placeholder="Укажите ваше имя">
+							</div>
+							<div class="form-group">
+								<label for="email">Адрес E-Mail:</label>
+								<input id="email" name="email" type="email" class="form-control" required placeholder="Укажите вашу почту">
+							</div>
+							<div class="form-group">
+								<label for="message">Задача</label>
+								<textarea id="message" name="message" class="form-control" required placeholder="Укажите задачу"></textarea>
+							</div>
+							<hr>
+							<button type="submit" class="btn btn-primary">Добавить</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Отмена</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Панель навигации -->
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./">Планировщик задач</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="./signin.php"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+					<li><a><span class="glyphicon glyphicon-user"></span> Вошёл как: admin</a></li>
+					<li><a href="./signin.php?action=logout"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Шапка -->
+		<div class="jumbotron text-center">
+			<div class="container">
+				<h1>Планировщик задач</h1>
+				<p>Тестовое задание для BeeJee</p>
+			</div>
+		</div>
+
+		<!-- Содержимое страницы -->
+		<div class="container">
+			<h2>Добавление новой задачи</h2>
+			<hr>
+				
+			<!-- Уведомление об ошибке -->
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+				Произошла ошибка при добавлении записи в базу данных
+			</div>
+					
+			<!-- Форма добавления/редактирования записи -->
+			<form action="/action_page.php" method="GET">
+				<input name="task_id" type="hidden" value="1">
+				<div class="form-group">
+					<label for="user">Ваше имя:</label>
+					<input id="user" name="user" type="text" class="form-control" required placeholder="Укажите ваше имя">
+				</div>
+				<div class="form-group">
+					<label for="email">Адрес E-Mail:</label>
+					<input id="email" name="email" type="email" class="form-control" required placeholder="Укажите вашу почту">
+				</div>
+				<div class="form-group">
+					<label for="content">Задача:</label>
+					<textarea id="content" name="content" class="form-control" required placeholder="Укажите задачу"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="state">Статус:</label>
+					<select id="state" name="state" class="form-control">
+						<option value="done">Выполнено</option>
+						<option value="notdone">Не выполнено</option>
+					</select>
+				</div>
+				<hr>
+			
+				<!-- Кнопка удаления задачи -->
+				<div class="pull-right">
+					<a href="./edit_task.php?action=delete&task_id=1" class="btn btn-danger">Удалить задачу</a>
+				</div>
+			
+				<!-- Кнопки добавления и отмены -->
+				<div class="pull-left">
+					<button type="submit" class="btn btn-primary">Добавить</button>
+					<a href="./" class="btn btn-warning" onclick="(function() { if (history.length > 1) history.back(); return false;} )();">Отмена</a>
+				</div>
+
+				<!-- Очистка 'float' -->
+				<div class="clearfix"></div>
+			</form>
+		</div>
+		
+		<!-- Пустой отступ -->
+		<div style="height:100px;"></div>
+		
+		<!-- Подвал -->
+		<footer>
+			<div class="container text-center">
+				<p>Копирайт &copy; 2020 все права не защитить.</p>
+			</div>
+		</footer>
+		
+		<!-- jQuery и Bootstrap библиотеки -->
+		<script src="./assets/js/jquery-3.5.1.js" type="text/javascript"></script>
+		<script src="./assets/js/bootstrap.js" type="text/javascript"></script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+# Включить перенаправления
+RewriteEngine On
+
+# Отключить перенаправление, если в запросе файл или директория
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Перенаправление в "index.php" всего, что идёт после первого слеша
+RewriteRule ^([^/]+)/? index.php?page=$1 [QSA,L]
