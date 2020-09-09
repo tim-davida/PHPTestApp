@@ -69,7 +69,7 @@ class UsersModel extends DBHandler
 	public function getUserById($userID)
 	{
 		// Запрос по ключевому полю
-		$queryResult = $this->query("SELECT * FROM users WHERE UserID = ?", [$userID]);
+		$queryResult = $this->query("SELECT * FROM Users WHERE UserID = ?", [$userID]);
 		// Получение первой записи
         $row = $queryResult->fetch();
 
@@ -96,7 +96,7 @@ class UsersModel extends DBHandler
 	public function getUserByName($username)
 	{
 		// Запрос по ключевому полю
-		$queryResult = $this->query("SELECT * FROM users WHERE Username = ?", [$username]);
+		$queryResult = $this->query("SELECT * FROM Users WHERE Username = ?", [$username]);
 		// Получение первой записи
         $row = $queryResult->fetch();
 

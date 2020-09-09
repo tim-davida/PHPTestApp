@@ -67,7 +67,7 @@ class TasksModel extends DBHandler
 	public function getTask($taskID)
 	{
 		// Запрос по ключевому полю
-		$queryResult = $this->query("SELECT * FROM tasklist WHERE TaskID = ?", [$taskID]);
+		$queryResult = $this->query("SELECT * FROM TaskList WHERE TaskID = ?", [$taskID]);
 		// Получение первой записи
 		$row = $queryResult->fetch();
 
@@ -93,7 +93,7 @@ class TasksModel extends DBHandler
         $offset = ($page - 1) * $maxRows;
                                                                 // В этом месте я тупо вставляю переменный без какой-либо валидации,
                                                                 // потому что я уже очень устал и у меня есть силы только городить костыли
-		$queryResult = $this->query("SELECT * FROM tasklist ORDER BY `$sortby` $orderby LIMIT $offset, $maxRows", null);
+		$queryResult = $this->query("SELECT * FROM TaskList ORDER BY `$sortby` $orderby LIMIT $offset, $maxRows", null);
 		// Получение всех записей
 		$rows = $queryResult->fetchAll();
 
@@ -119,7 +119,7 @@ class TasksModel extends DBHandler
 	public function getTotalRows()
 	{
 		// Запрос количества записей
-		$queryResult = $this->query("SELECT COUNT(*) FROM tasklist", null);
+		$queryResult = $this->query("SELECT COUNT(*) FROM TaskList", null);
 		$result = $queryResult->fetch();
 
 		// Возвращаем результат запроса
